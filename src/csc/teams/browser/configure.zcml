@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+  <!-- Register static resources -->
+  <browser:resourceDirectory
+      name="csc.teams"
+      directory="static"
+      layer="..interfaces.ICSCTeamsLayer"
+      />
+
+  <!-- Team view -->
+  <browser:page
+      name="view"
+      for="..content.team.ITeam"
+      class=".views.TeamView"
+      template="templates/team_view.pt"
+      permission="zope2.View"
+      layer="..interfaces.ICSCTeamsLayer"
+      />
+
+</configure>

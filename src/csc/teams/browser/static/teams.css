@@ -1,0 +1,139 @@
+/* Team listing styles for csc.teams addon */
+
+.team-description {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-left: 4px solid #007bb1;
+}
+
+.team-members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-member-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.team-member-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.member-portrait {
+    margin-bottom: 1rem;
+}
+
+.member-portrait img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bb1;
+}
+
+.member-name {
+    font-size: 1.3rem;
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.member-job-info {
+    margin: 0.75rem 0;
+    color: #666;
+}
+
+.member-job-info .job-title {
+    font-weight: 600;
+    color: #444;
+}
+
+.member-job-info .department {
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.member-manager {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0.5rem 0;
+}
+
+.member-contact {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    font-style: normal;
+}
+
+.member-contact div {
+    margin: 0.25rem 0;
+}
+
+.member-contact a {
+    color: #007bb1;
+    text-decoration: none;
+}
+
+.member-contact a:hover {
+    text-decoration: underline;
+}
+
+.member-contact .label {
+    font-weight: 500;
+    margin-right: 0.25rem;
+}
+
+.no-members-message {
+    text-align: center;
+    padding: 3rem;
+    color: #999;
+    font-style: italic;
+}
+
+.no-members-message a {
+    color: #007bb1;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.no-members-message a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .team-members-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .team-members-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+}
+
+/* Print styles */
+@media print {
+    .team-member-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+
+    .team-member-card:hover {
+        transform: none;
+    }
+}

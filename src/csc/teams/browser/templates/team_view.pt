@@ -1,0 +1,110 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="context/main_template/macros/master">
+
+<body>
+
+<metal:content-core fill-slot="content-core">
+  <metal:block define-macro="content-core"
+               tal:define="members view/get_team_members">
+
+    <!-- Team description (if provided) -->
+    <div class="team-description"
+         tal:condition="context/description"
+         tal:content="context/description">
+      Team description goes here
+    </div>
+
+    <!-- Team members grid -->
+    <section class="team-members-grid"
+             tal:condition="members"
+             role="list"
+             aria-label="Team members">
+
+      <article class="team-member-card"
+               tal:repeat="member members"
+               role="listitem">
+
+        <!-- Portrait (conditional) -->
+        <div class="member-portrait"
+             tal:condition="context/show_portraits">
+          <img tal:attributes="src member/portrait_url;
+                               alt string:Photo of ${member/fullname}"
+               aria-hidden="false" />
+        </div>
+
+        <!-- Name -->
+        <h3 class="member-name" tal:content="member/fullname">
+          John Smith
+        </h3>
+
+        <!-- Job info (conditional) -->
+        <div class="member-job-info"
+             tal:condition="context/show_job_info">
+          <div class="job-title"
+               tal:condition="member/job_title"
+               tal:content="member/job_title">
+            WHS Officer
+          </div>
+          <div class="department"
+               tal:condition="member/department"
+               tal:content="member/department">
+            Safety Team
+          </div>
+        </div>
+
+        <!-- Manager (conditional) -->
+        <div class="member-manager"
+             tal:condition="python:context.show_manager and member.get('manager_name')"
+             tal:content="string:Manager: ${member/manager_name}">
+          Manager: Jane Doe
+        </div>
+
+        <!-- Contact info (conditional) -->
+        <address class="member-contact"
+                 tal:condition="context/show_contact_info">
+          <div class="contact-email"
+               tal:condition="member/email">
+            <a tal:attributes="href string:mailto:${member/email};
+                               aria-label string:Email ${member/fullname}"
+               tal:content="member/email">
+              email@example.com
+            </a>
+          </div>
+          <div class="contact-phone"
+               tal:condition="member/phone">
+            <span class="label">Phone:</span>
+            <a tal:attributes="href string:tel:${member/phone};
+                               aria-label string:Call ${member/fullname}"
+               tal:content="member/phone">
+              07 4000 1234
+            </a>
+          </div>
+          <div class="contact-mobile"
+               tal:condition="python:member.get('mobile') and member.get('mobile') != member.get('phone')">
+            <span class="label">Mobile:</span>
+            <a tal:attributes="href string:tel:${member/mobile};
+                               aria-label string:Call mobile for ${member/fullname}"
+               tal:content="member/mobile">
+              0400 123 456
+            </a>
+          </div>
+        </address>
+
+      </article>
+
+    </section>
+
+    <!-- Empty state -->
+    <div class="no-members-message"
+         tal:condition="not:members"
+         role="status">
+      <p>No team members selected. <a href="edit" tal:attributes="href string:${context/absolute_url}/edit">Edit this team</a> to add members.</p>
+    </div>
+
+  </metal:block>
+</metal:content-core>
+
+</body>
+</html>
