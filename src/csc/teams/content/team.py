@@ -2,7 +2,6 @@
 
 from plone.autoform import directives
 from plone.supermodel import model
-from z3c.form.browser.select import SelectFieldWidget
 from zope import schema
 from zope.interface import implementer
 
@@ -14,13 +13,8 @@ class ITeam(model.Schema):
     data from LDAP/memberdata.
     """
 
-    # Team members selection - using z3c.form widget for better control
-    directives.widget(
-        'members',
-        SelectFieldWidget,
-        multiple=True,
-        size=10,
-    )
+    # Team members selection - List field with custom vocabulary
+    # The widget is automatically a multi-select for List fields
     members = schema.List(
         title='Team Members',
         description='Select users to include in this team (hold Ctrl/Cmd to select multiple).',
