@@ -1,12 +1,13 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser">
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone">
 
-  <!-- Register static resources -->
-  <browser:resourceDirectory
+  <!-- Register static resources using plone:static for Plone 6 -->
+  <plone:static
       name="csc.teams"
+      type="plone"
       directory="static"
-      layer="..interfaces.ICSCTeamsLayer"
       />
 
   <!-- Team view -->

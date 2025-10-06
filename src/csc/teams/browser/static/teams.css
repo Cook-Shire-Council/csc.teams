@@ -1,15 +1,8 @@
 /* Team listing styles for csc.teams addon */
 
-.team-description {
-    margin-bottom: 2rem;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-left: 4px solid #007bb1;
-}
-
 .team-members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -19,9 +12,14 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1.5rem;
-    text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: box-shadow 0.3s, transform 0.3s;
+
+    /* Desktop: side-by-side layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem;
 }
 
 .team-member-card:hover {
@@ -30,7 +28,7 @@
 }
 
 .member-portrait {
-    margin-bottom: 1rem;
+    flex-shrink: 0;
 }
 
 .member-portrait img {
@@ -39,6 +37,12 @@
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #007bb1;
+}
+
+.member-info {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
 }
 
 .member-name {
@@ -113,15 +117,17 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-    .team-members-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    .team-member-card {
+        flex-direction: column;
+        text-align: center;
     }
-}
 
-@media (min-width: 1200px) {
-    .team-members-grid {
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    .member-info {
+        text-align: center;
+    }
+
+    .member-portrait {
+        margin: 0 auto;
     }
 }
 

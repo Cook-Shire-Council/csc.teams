@@ -112,9 +112,9 @@ class TeamView(BrowserView):
         except AttributeError:
             logger.debug("No portrait collection available")
 
-        # Return custom default profile image
+        # Return custom default profile image using ++plone++ namespace
         portal = api.portal.get()
-        return f"{portal.absolute_url()}/++resource++csc.teams/default_profile.png"
+        return f"{portal.absolute_url()}/++plone++csc.teams/default_profile.png"
 
     def _sort_members(self, members):
         """Sort members according to context.sort_by.
